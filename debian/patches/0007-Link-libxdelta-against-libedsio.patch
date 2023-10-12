@@ -1,0 +1,23 @@
+From: Andrej Shadura <andrew.shadura@collabora.co.uk>
+Date: Fri, 31 Dec 2021 15:59:18 +0100
+Subject: Link libxdelta against libedsio
+
+Bug-Debian: https://bugs.debian.org/558971
+Bug-Debian: https://bugs.debian.org/585713
+---
+ Makefile.am | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Makefile.am b/Makefile.am
+index 41b217e..4320823 100644
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -17,7 +17,7 @@ noinst_HEADERS  = xdeltapriv.h getopt.h
+ lib_LTLIBRARIES = libxdelta.la
+ 
+ libxdelta_la_SOURCES = xdelta.c xdapply.c $(SER_SOURCES)
+-libxdelta_la_LIBADD  = $(GLIB_LIBS)
++libxdelta_la_LIBADD  = $(GLIB_LIBS) libedsio/libedsio.la
+ 
+ EXTRA_DIST = xd.ser $(SER_OUT) xdelta.magic xdelta.prj xdelta.m4	\
+ 	autogen.sh xdelta.dsp xdelta.dsw stamp-ser xdrsync.c

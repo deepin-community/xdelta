@@ -1,0 +1,25 @@
+From: Ludek Smid <lsmid@redhat.com>
+Date: Mon, 2 Oct 2006 15:11:36 +0200
+Subject: Fix 64-bit compatibility memory allocation bug
+
+Fix memory allocation bug that prevented to apply patches created on x86
+platform to be applied on x86_64 platform. For some reason, amount of
+memory to allocate is specified in the delta file, but on 64bit platforms,
+you need more space for pointers.
+---
+ libedsio/fh.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/libedsio/fh.c b/libedsio/fh.c
+index 9135f8b..7f2f8ba 100644
+--- a/libedsio/fh.c
++++ b/libedsio/fh.c
+@@ -92,6 +92,8 @@ handle_source_type (SerialSource* source, gboolean set_allocation)
+     {
+       if (! ssource->fh->table->table_handle_getui (ssource->fh, &source->alloc_total))
+ 	return ST_Error;
++      /* There are 12 pointers in all required structures. So 64 bit arch needs 48 more bytes. */
++      source->alloc_total += (sizeof(void *) - 4) * 12;
+     }
+ 
+   return x;

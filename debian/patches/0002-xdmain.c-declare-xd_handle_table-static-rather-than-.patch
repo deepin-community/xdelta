@@ -1,0 +1,24 @@
+From: Roger Leigh <rleigh@debian.org>
+Date: Sun, 4 Sep 2005 16:40:36 +0100
+Subject: xdmain.c: declare xd_handle_table static rather than extern
+
+This fixes a build failure with GCC 4.0
+
+Closes: #297844
+---
+ xdmain.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/xdmain.c b/xdmain.c
+index 1d9fd84..fa16432 100644
+--- a/xdmain.c
++++ b/xdmain.c
+@@ -64,7 +64,7 @@
+ 
+ #include "xdelta.h"
+ 
+-extern HandleFuncTable xd_handle_table;
++static HandleFuncTable xd_handle_table;
+ 
+ #define XD_PAGE_SIZE (1<<20)
+ 

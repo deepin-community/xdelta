@@ -1,0 +1,28 @@
+From: Josh MacDonald <josh.macdonald@gmail.com>
+Date: Fri, 2 Feb 2007 06:40:34 +0000
+Subject: Add an error message for parse errors with the XdeltaControl object
+
+---
+ xdelta.c | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
+
+diff --git a/xdelta.c b/xdelta.c
+index 36e230d..598dfab 100644
+--- a/xdelta.c
++++ b/xdelta.c
+@@ -1407,7 +1407,14 @@ xdp_control_read (XdeltaStream    *cont_in)
+     return NULL;
+ 
+   if (! serializeio_unserialize_generic_acceptable (src, ST_XdeltaControl | ST_Version0Control, & type, (void**) & cont))
+-    return NULL;
++    {
++      /* TODO: the warning below was added after a bug report
++       * regarding an invalid delta, which would fail in patch here:
++       * It's unclear whether this is the "right" place to print the
++       * error. */
++      g_warning ("patch parse error\n");
++      return NULL;
++    }
+ 
+   if (type == ST_Version0Control)
+     {

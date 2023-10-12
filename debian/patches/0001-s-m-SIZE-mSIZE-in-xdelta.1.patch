@@ -1,0 +1,22 @@
+From: Adrian Bunk <bunk@fs.tum.de>
+Date: Sat, 17 Nov 2001 17:30:33 +0100
+Subject: s/-m=SIZE/-mSIZE/ in xdelta.1
+
+Closes: #75033
+---
+ doc/xdelta.1 | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/doc/xdelta.1 b/doc/xdelta.1
+index d217f16..b4cf616 100644
+--- a/doc/xdelta.1
++++ b/doc/xdelta.1
+@@ -174,7 +174,7 @@ Verbose.  Prints a bit of extra information.
+ No verify.  Turns off MD5 checksum verification of the input and
+ output files.
+ 
+-.IP "-m=SIZE, --maxmem=SIZE"
++.IP "-mSIZE, --maxmem=SIZE"
+ Set an upper bound on the size of an in-memory page cache.  For
+ example, --maxmem=32M will use a 32 megabyte page cache.
+ 

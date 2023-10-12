@@ -1,0 +1,20 @@
+From: Andrej Shadura <andrew.shadura@collabora.co.uk>
+Date: Fri, 31 Dec 2021 16:34:40 +0100
+Subject: Add missing -q to the usage text
+
+---
+ xdmain.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/xdmain.c b/xdmain.c
+index 74e9fb6..de71ade 100644
+--- a/xdmain.c
++++ b/xdmain.c
+@@ -260,6 +260,7 @@ help ()
+   xd_error ("  -h, --help         Print this summary\n");
+   xd_error ("  -n, --noverify     Disable automatic MD5 verification\n");
+   xd_error ("  -p, --pristine     Disable automatic GZIP decompression\n");
++  xd_error ("  -q, --quiet        Do not print warnings\n");
+   xd_error ("  -m, --maxmem=SIZE  Set the buffer size limit, e.g. 640K, 16M\n");
+   xd_error ("  -[0-9]             ZLIB compress level: 0=none, 1=fast, 6=default, 9=best\n");
+   xd_error ("  -s=BLOCK_SIZE      Sets block size (power of 2), minimum match length\n");

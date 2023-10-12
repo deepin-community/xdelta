@@ -1,0 +1,11 @@
+0001-s-m-SIZE-mSIZE-in-xdelta.1.patch
+0002-xdmain.c-declare-xd_handle_table-static-rather-than-.patch
+0003-Fix-64-bit-compatibility-memory-allocation-bug.patch
+0004-Rewrite-xdelta.m4-for-Autoconf-2.5x-compatibility.patch
+0005-Switch-from-glib1.2-to-glib2.0.patch
+0006-Fix-FTBFS-on-Hurd.patch
+0007-Link-libxdelta-against-libedsio.patch
+0008-Add-an-error-message-for-parse-errors-with-the-Xdelt.patch
+0009-delta_command-check-gzclose-errors-to-avoid-producin.patch
+0010-Add-missing-q-to-the-usage-text.patch
+0011-Support-pkg-config.patch

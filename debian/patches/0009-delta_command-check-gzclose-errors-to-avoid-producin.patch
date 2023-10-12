@@ -1,0 +1,35 @@
+From: Josh MacDonald <josh.macdonald@gmail.com>
+Date: Fri, 2 Feb 2007 19:55:28 +0000
+Subject: delta_command: check gzclose() errors to avoid producing an invalid delta
+
+---
+ xdmain.c | 9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
+
+diff --git a/xdmain.c b/xdmain.c
+index fa16432..74e9fb6 100644
+--- a/xdmain.c
++++ b/xdmain.c
+@@ -624,7 +624,7 @@ file_gunzip (const char* name)
+   FILE* out = fopen (new_name, FOPEN_WRITE_ARG);
+   gzFile in = gzopen (name, "rb");
+   guint8 buf[1024];
+-  int nread;
++  int nread, ret;
+ 
+   while ((nread = gzread (in, buf, 1024)) > 0)
+     {
+@@ -641,7 +641,12 @@ file_gunzip (const char* name)
+       return NULL;
+     }
+ 
+-  gzclose (in);
++  ret = gzclose (in);
++  if (ret != Z_OK)
++    {
++      xd_error ("gzip input decompression failed: %s\n", name);
++      return NULL;
++    }
+ 
+   if (fclose (out))
+     {
